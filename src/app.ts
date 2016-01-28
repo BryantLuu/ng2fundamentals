@@ -1,8 +1,13 @@
 import {bootstrap} from 'angular2/platform/browser';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {ROUTER_PROVIDERS} from 'angular2/router';
+import {Component} from 'angular2/core';
+import {TodoInput} from "./app/components/todo-input";
 
-import {SeedApp} from './app/seed-app';
+@Component({
+  selector: 'app',
+  directives: [TodoInput],
+  template: `<div><todo-input></todo-input></div>`
+})
+class App{}
 
-bootstrap(SeedApp, [HTTP_PROVIDERS, ROUTER_PROVIDERS])
+bootstrap(App)
   .catch(err => console.error(err));
