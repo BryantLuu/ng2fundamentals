@@ -6,15 +6,17 @@ import {TodoInput} from "./app/components/todo-input";
 import {TodoService} from "./app/services/todo-service";
 // another component
 import {TodoList} from "./app/components/todo-list";
+import {StatusSelector} from "./app/components/status-selector"
 
 
 
 @Component({
   selector: 'app',
-  directives: [TodoInput, TodoList],
+  directives: [TodoInput, TodoList, StatusSelector],
   template: `<div>
   <todo-input></todo-input>
-  <todo-list></todo-list>
+  <status-selector (select)="status= $event"></status-selector>
+  <todo-list [status]="status"></todo-list>
   </div>`
 })
 class App{}
