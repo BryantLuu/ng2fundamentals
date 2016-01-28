@@ -15,5 +15,6 @@ import {Component, Input, Output, EventEmitter} from "angular2/core";
 })
 export class TodoItemRenderer{
   @Input() todo;
+  //custom event and instiate new event emitter
   @Output() toggle = new EventEmitter();
 }

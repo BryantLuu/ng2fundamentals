@@ -2,16 +2,19 @@ import {Component, Input} from "angular2/core"
 import {TodoService} from "../services/todo-service"
 import {TodoItemRenderer} from "./todo-item-renderer"
 import {StartedPipe} from "../pipes/started-pipe"
+import {SearchPipe} from "../pipes/search-pipe"
 
 // * means directive gonna change the element itself using internal template
 @Component({
   selector: 'todo-list',
-  pipes: [StartedPipe],
+  pipes: [StartedPipe, SearchPipe],
   directives: [TodoItemRenderer],
   // property of todo is being passed into [todo]
   template: `<div>
     <ul>
-      <li *ngFor="#todo of todoService.todos | started : status ">
+      <li *ngFor="#todo of todoService.todos 
+      | started : status 
+      | search : term">
         <todo-item-renderer 
         [todo]="todo"
         (toggle)="todoService.toggleTodo($event)"
@@ -22,5 +25,6 @@ import {StartedPipe} from "../pipes/started-pipe"
 })
 export class TodoList{
   @Input() status;
+  @Input() term;
   constructor(public todoService:TodoService){}
 }
